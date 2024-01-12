@@ -28,7 +28,7 @@ steps:
         from_secret: GCR_USERNAME
       password:
         from_secret: GCR_PASSWORD
-      repo: "git.lab.kvd.studio/${DRONE_REPO}"
+      repo: git.lab.kvd.studio/r/update-manifest-image-tag
       registry: git.lab.kvd.studio
       tags:
         - "${DRONE_COMMIT_SHA}"
