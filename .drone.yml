@@ -1,0 +1,35 @@
+kind: secret
+name: GCR_USERNAME
+get:
+  path: kv/data/lab/droneci
+  name: GCR_USERNAME
+---
+kind: secret
+name: GCR_PASSWORD
+get:
+  path: kv/data/lab/droneci
+  name: GCR_PASSWORD
+---
+kind: pipeline
+type: docker
+name: Build and push
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+
+steps:
+  - name: Build and push
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: GCR_USERNAME
+      password:
+        from_secret: GCR_PASSWORD
+      repo: "git.lab.kvd.studio/${DRONE_REPO}"
+      registry: git.lab.kvd.studio
+      tags:
+        - "${DRONE_COMMIT_SHA}"
+        - v0.1
