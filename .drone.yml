@@ -32,4 +32,4 @@ steps:
       registry: git.lab.kvd.studio
       tags:
         - "${DRONE_COMMIT_SHA}"
-        - v0.2
+        - v0.2.1
